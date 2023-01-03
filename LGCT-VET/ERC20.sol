@@ -41,7 +41,7 @@ contract ERC20 is Context, IERC20 {
 
     string private constant _name = "LEGACY TOKEN";
     string private constant _symbol = "LGCT";
-    uint8 private immutable _decimals;
+    uint8 private constant _decimals = 18;
 
     /**
      * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
@@ -52,9 +52,6 @@ contract ERC20 is Context, IERC20 {
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor() {
-        _decimals = 18;
-    }
 
     /**
      * @dev Returns the name of the token.
@@ -209,7 +206,7 @@ contract ERC20 is Context, IERC20 {
             _msgSender(),
             _allowances[sender][_msgSender()].sub(
                 amount,
-                "ERC20: amount exceeds a."
+                "ERC20: insufficient allowance"
             )
         );
         return true;
